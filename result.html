@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Analysis Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a2a72;
+            --secondary: #009ffd;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light);
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .result-card {
+            width: 450px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+        
+        .result-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .safe {
+            color: var(--success);
+        }
+        
+        .fraud {
+            color: var(--danger);
+        }
+        
+        .result-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .transaction-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .info-label {
+            opacity: 0.7;
+        }
+        
+        .risk-indicator {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .risk-level {
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .high-risk {
+            width: 100%;
+            background: var(--danger);
+        }
+        
+        .medium-risk {
+            width: 60%;
+            background: var(--warning);
+        }
+        
+        .low-risk {
+            width: 30%;
+            background: var(--success);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="result-card">
+        {% if result.prediction == 'Fraudulent' %}
+        <div class="result-icon fraud">⚠️</div>
+        <h1 class="result-title">Suspicious Transaction Detected!</h1>
+        {% else %}
+        <div class="result-icon safe">✓</div>
+        <h1 class="result-title">Transaction Approved</h1>
+        {% endif %}
+        
+        <div class="transaction-info">
+            <div class="info-row">
+                <span class="info-label">Card Ending:</span>
+                <span>•••• {{ result.card_number }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Amount:</span>
+                <span>${{ result.amount }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Risk Probability:</span>
+                <span>{{ result.probability }}</span>
+            </div>
+        </div>
+        
+        <div class="risk-indicator">
+            <div class="risk-level {{ result.risk_level }}-risk"></div>
+        </div>
+        
+        <p>
+            {% if result.prediction == 'Fraudulent' %}
+            Our system detected potentially fraudulent activity with this transaction.
+            {% else %}
+            This transaction appears to be legitimate with low risk.
+            {% endif %}
+        </p>
+        
+        <a href="/" class="btn">Check Another Transaction</a>
+    </div>
+</body>
+</html>
