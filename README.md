@@ -55,10 +55,10 @@ This project detects fraudulent credit card transactions using machine learning 
 ---
 ## Project Structure
 credit-card-fraud-detection/
-├── Credit Card Fraud detection.ipynb   # Main notebook for fraud detection
-├── fraud_detection_model.joblib        # Trained machine learning model
-├── requirements.txt                    # List of dependencies
-└── README.md                           # Project documentation
+├── Credit Card Fraud detection.ipynb # Main notebook for fraud detection
+├── fraud_detection_model.joblib # Trained machine learning model
+├── requirements.txt # List of dependencies
+└── README.md # Project documentation
 
 
 ## 🛠️ Installation
