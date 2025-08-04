@@ -53,17 +53,20 @@ This project detects fraudulent credit card transactions using machine learning 
     ```
 
 ---
+## Project Structure
+credit-card-fraud-detection/
+├── Credit Card Fraud detection.ipynb   # Main notebook for fraud detection
+├── fraud_detection_model.joblib        # Trained machine learning model
+├── requirements.txt                    # List of dependencies
+└── README.md                           # Project documentation
+
 
 ## 🛠️ Installation
+pip install pandas scikit-learn joblib
+jupyter notebook "Credit Card Fraud detection.ipynb"
 
-1. Clone the repository:
+Clone the repository:
    ```bash
    git clone https://github.com/yourusername/credit-card-fraud-detection.git
    cd credit-card-fraud-detection
-pip install pandas scikit-learn joblib
-jupyter notebook Credit\ Card\ Fraud\ detection.ipynb
-credit-card-fraud-detection/
-├── Credit Card Fraud detection.ipynb
-├── fraud_detection_model.joblib
-├── requirements.txt
-└── README.md
+
